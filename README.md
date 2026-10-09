@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Learn JavaScript, TypeScript & Playwright (4x)
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)
@@ -974,3 +975,6 @@ console.log("" === "0"); // false
 
 - **Chapter 04: Operators** continues: `25_CC.js` is still empty.
 - Then TypeScript, then Playwright.
+=======
+# Playwright4X_Batch
+>>>>>>> 09d727733ae153d5e423314b56d0dca11fa8c6d3
