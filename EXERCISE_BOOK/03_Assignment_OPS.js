@@ -11,3 +11,9 @@ console.log(car === bike); // false
 
 console.log(car != bike); // false
 console.log(car !== bike); // true
+
+let s = "Hello, ";
+console.log(s); // Hello
+console.log(typeof s); // string
+
+console.log(s + "World!" + 1,2,3,4,5, true); // Hello, World! 1 2 3 4 5 true
