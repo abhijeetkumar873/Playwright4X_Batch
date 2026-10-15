@@ -1,0 +1,23 @@
+{
+  "name": "learn_jsts_playwright_4x",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # Learn JavaScript, TypeScript & Playwright (4x)",
+  "homepage": "https://github.com/abhijeetkumar873/Playwright4X_Batch#readme",
+  "bugs": {
+    "url": "https://github.com/abhijeetkumar873/Playwright4X_Batch/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhijeetkumar873/Playwright4X_Batch.git"
+  },
+  "license": "ISC",
+  "author": "Abhijeet Kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
