@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A visual explanation of JavaScript object references and assignment.">
+  <title>JavaScript Objects: Shared References</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #172033;
+      background: #f3f6fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+    }
+
+    main {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: clamp(22px, 5vw, 48px);
+      border: 1px solid #dfe6f1;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 16px 48px rgb(23 32 51 / 8%);
+    }
+
+    h1, h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    h2 {
+      margin-top: 34px;
+      font-size: 1.35rem;
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .intro {
+      color: #44516a;
+      font-size: 1.15rem;
+    }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    code {
+      color: #5428a3;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: #111827;
+      color: #e5eefc;
+      font-size: 0.96rem;
+      line-height: 1.8;
+    }
+
+    .diagram {
+      margin: 22px 0;
+      padding: 12px;
+      border: 1px solid #e1e8f2;
+      border-radius: 14px;
+      background: #f8faff;
+    }
+
+    .diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .callout {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 5px solid #6d4aff;
+      border-radius: 8px;
+      background: #f2efff;
+      line-height: 1.65;
+    }
+
+    .result {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #edf8f1;
+    }
+
+    .result output {
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+      color: #126333;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: 0;
+      border-radius: 8px;
+      background: #5138c5;
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3e29a5;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #9a8bff;
+      outline-offset: 3px;
+    }
+
+    .copy-example {
+      margin-top: 18px;
+    }
+
+    .muted {
+      color: #56647a;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 14px 10px;
+      }
+
+      main {
+        padding: 22px 17px;
+      }
+
+      pre {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>JavaScript Objects: Why Does It Print <code>"fail"</code>?</h1>
+    <p class="intro">
+      This example shows that assigning an object to another variable does not make a separate object.
+      Both variables can point to the same object.
+    </p>
+
+    <h2>The code</h2>
+    <pre><code>let a = { status: "pass" };
+let b = a;
+b.status = "fail";
+console.log(a.status);</code></pre>
+
+    <h2>Picture it</h2>
+    <p>Think of the object as one shared box. The variables <code>a</code> and <code>b</code> are two labels pointing to that same box.</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 760 300" role="img" aria-labelledby="diagram-title diagram-description">
+        <title id="diagram-title">Two variables point to one JavaScript object</title>
+        <desc id="diagram-description">The variable a and variable b both point to the same object box, whose status property is fail.</desc>
+        <defs>
+          <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M 0 0 L 12 6 L 0 12 z" fill="#5138c5"></path>
+          </marker>
+        </defs>
+        <rect x="34" y="46" width="145" height="66" rx="14" fill="#e7f0ff" stroke="#8eb2ec" stroke-width="2"></rect>
+        <text x="106" y="87" text-anchor="middle" font-size="25" font-family="Consolas, monospace" fill="#172033">a</text>
+        <rect x="34" y="188" width="145" height="66" rx="14" fill="#e7f0ff" stroke="#8eb2ec" stroke-width="2"></rect>
+        <text x="106" y="229" text-anchor="middle" font-size="25" font-family="Consolas, monospace" fill="#172033">b</text>
+        <path d="M 180 78 C 280 78, 280 120, 378 140" fill="none" stroke="#5138c5" stroke-width="4" marker-end="url(#arrow)"></path>
+        <path d="M 180 221 C 280 221, 280 180, 378 160" fill="none" stroke="#5138c5" stroke-width="4" marker-end="url(#arrow)"></path>
+        <rect x="395" y="75" width="325" height="150" rx="18" fill="#fff4d8" stroke="#e7b94f" stroke-width="3"></rect>
+        <text x="557" y="119" text-anchor="middle" font-size="19" font-family="Segoe UI, Arial, sans-serif" fill="#57410b">One shared object</text>
+        <text x="557" y="164" text-anchor="middle" font-size="23" font-family="Consolas, monospace" fill="#172033">{ status: "fail" }</text>
+        <text x="557" y="197" text-anchor="middle" font-size="15" font-family="Segoe UI, Arial, sans-serif" fill="#6d5a2a">b.status changed this object</text>
+      </svg>
+    </figure>
+
+    <h2>Step by step</h2>
+    <ol>
+      <li><code>let a = { status: "pass" }</code> creates one object. Its <code>status</code> starts as <code>"pass"</code>.</li>
+      <li><code>let b = a</code> makes <code>b</code> refer to the same object as <code>a</code>. It does not create a second object.</li>
+      <li><code>b.status = "fail"</code> changes the <code>status</code> property on that shared object.</li>
+      <li><code>a.status</code> reads the changed property, so the console prints <code>fail</code>.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Remember:</strong> <code>a</code> and <code>b</code> are different variable names, but they point to the same object. Changing the object through either name is visible through the other.
+    </div>
+
+    <div class="result">
+      <strong>Console output:</strong>
+      <output id="output" aria-live="polite">fail</output>
+      <button id="run-example" type="button">Run the example again</button>
+    </div>
+
+    <section class="copy-example">
+      <h2>Want a separate, shallow copy?</h2>
+      <p class="muted">For this simple object, the spread syntax makes a new object. Updating the copy does not change the original object's top-level <code>status</code>.</p>
+      <pre><code>const original = { status: "pass" };
+const copy = { ...original };
+
+copy.status = "fail";
+
+console.log(original.status); // "pass"
+console.log(copy.status);     // "fail"</code></pre>
+      <p class="muted">This is a shallow copy: nested objects inside the original would still be shared unless copied separately.</p>
+    </section>
+  </main>
+
+  <script>
+    function runExample() {
+      let a = { status: "pass" };
+      let b = a;
+      b.status = "fail";
+      document.getElementById("output").textContent = a.status;
+    }
+
+    document.getElementById("run-example").addEventListener("click", runExample);
+    runExample();
+  </script>
+</body>
+</html>
