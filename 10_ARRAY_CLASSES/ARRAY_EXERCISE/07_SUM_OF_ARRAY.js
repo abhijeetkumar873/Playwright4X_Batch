@@ -8,6 +8,3 @@ for(let i =0; i<n; i++)
     sum = sum+arr[i];
 }
 console.log(sum);
-
-// Example 03
-

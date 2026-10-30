@@ -226,6 +226,14 @@ console.log(original.status); // "pass"
 console.log(copy.status);     // "fail"</code></pre>
       <p class="muted">This is a shallow copy: nested objects inside the original would still be shared unless copied separately.</p>
     </section>
+
+    <section>
+      <h2>Git commands to add and push these files</h2>
+      <p class="muted">Run these commands from the repository root. They stage only the two object example files, commit them, and push the commit to <code>main</code>.</p>
+      <pre><code>git add -- "15_OBJECT_JS/01.object.js" "15_OBJECT_JS/01_object_explained.html"
+git commit -m "Add JavaScript object reference explanation"
+git push origin main</code></pre>
+    </section>
   </main>
 
   <script>
